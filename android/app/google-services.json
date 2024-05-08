@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "280283897162",
+    "project_id": "flower-detection-app-1b7ed",
+    "storage_bucket": "flower-detection-app-1b7ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280283897162:android:05d9aef7adb4f94395f5b3",
+        "android_client_info": {
+          "package_name": "com.example.flower_detection_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEPtHhwJVcw0iOBKqCPps5WEF4-pgKMSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
