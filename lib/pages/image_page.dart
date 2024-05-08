@@ -21,7 +21,6 @@ class _PickImageState extends State<PickImage> {
   @override
   void initState() {
     super.initState();
-    // Load TFLite model when the page initializes
     loadModel();
   }
 
@@ -62,7 +61,7 @@ class _PickImageState extends State<PickImage> {
   }
 
   void performInference() async {
-    // Perform inference on the selected image
+
     final List<dynamic>? result = await Tflite.runModelOnImage(
       path: filePath!.path,
       numResults: 1,
@@ -79,30 +78,24 @@ class _PickImageState extends State<PickImage> {
       String? flowerId;
       for (var element in result) {
         if (element is Map<Object?, Object?>) {
-          // Check if the element is a map and contains the 'index' key
           final dynamic indexValue = element['index'];
           if (indexValue != null && indexValue is int) {
-            // Extract the index from the map
             flowerId = indexValue.toString();
-            break; // Exit the loop after finding the index
+            break;
           }
         } else if (element is String) {
-          // Handle the case where the element is a string
-          // Extracting the index assuming the format: "index label"
           final parts = element.split(' ');
           if (parts.length >= 2) {
             flowerId = parts[0];
-            break; // Exit the loop after finding the index
+            break;
           }
         }
       }
 
       setState(() {
-        // Setting the generated ID
         _generatedId = flowerId;
       });
 
-      // Navigate to the FlowerDetails page with the generated ID
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -120,11 +113,10 @@ class _PickImageState extends State<PickImage> {
   }
 
   @override
-  void dispose() {
-    // Release TensorFlow Lite model when the widget is disposed
-    Tflite.close();
-    super.dispose();
-  }
+  // void dispose() {
+  //   Tflite.close();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {

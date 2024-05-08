@@ -25,31 +25,3 @@ Future<String?> fetchFlowerName(String documentId) async {
     return null;
   }
 }
-
-/*
-
-body: StreamBuilder(
-      stream: FirebaseFirestore.instance.collection("flowers").snapshots(),
-      builder:(context,snapshot){
-        if ( snapshot.connectionState == ConnectionState.active ) {
-          if ( snapshot.hasData ) {
-            return ListView.builder(itemBuilder: (context,index){
-              return ListTile(
-              leading: CircleAvatar(
-                  child: Text("${index+1}"),
-                ),
-                title: Text("${snapshot.data!.docs[index]["title"]}"),
-                subtitle: Text("${snapshot.data!.docs[index]["description"]}"),
-              );
-            })
-          }
-          else if ( snapshot.hasError ) {
-            return Center(child: Text("${snapshot.hasError.toString}"),);
-          }
-          else {
-
-          }
-        }
-      })
-
-*/
