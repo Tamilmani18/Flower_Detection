@@ -5,10 +5,11 @@ import 'package:flower_detection_app/pages/home_page.dart';
 
 void main() async{
   // initialize firebase
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); // ensures bindings for native platform
   if (kIsWeb) {
     // for web
-    await Firebase.initializeApp(options: const FirebaseOptions(apiKey: "AIzaSyDYG1yE_hlCsJBYYlylc9gJo2HmR-6FSYw",
+    await Firebase.initializeApp(options: const FirebaseOptions(
+        apiKey: "AIzaSyDYG1yE_hlCsJBYYlylc9gJo2HmR-6FSYw",
         authDomain: "flower-detection-app-1b7ed.firebaseapp.com",
         projectId: "flower-detection-app-1b7ed",
         storageBucket: "flower-detection-app-1b7ed.appspot.com",
