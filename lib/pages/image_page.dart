@@ -76,25 +76,29 @@ class _PickImageState extends State<PickImage> {
     }
 
     if (result != null && result.isNotEmpty) {
-      // Iterate over the result list to find the flower index
       String? flowerId;
-      if (kDebugMode) {
-        print('Logging flowerId: $flowerId');
-      }
       for (var element in result) {
-        // Check if the element is a map and contains the 'index' key
-        if (element is Map<String, dynamic> && element.containsKey('index')) {
-          // Extract the index from the map
-          flowerId = element['index'].toString();
-          break; // Exit the loop after finding the index
+        if (element is Map<Object?, Object?>) {
+          // Check if the element is a map and contains the 'index' key
+          final dynamic indexValue = element['index'];
+          if (indexValue != null && indexValue is int) {
+            // Extract the index from the map
+            flowerId = indexValue.toString();
+            break; // Exit the loop after finding the index
+          }
+        } else if (element is String) {
+          // Handle the case where the element is a string
+          // Extracting the index assuming the format: "index label"
+          final parts = element.split(' ');
+          if (parts.length >= 2) {
+            flowerId = parts[0];
+            break; // Exit the loop after finding the index
+          }
         }
       }
 
       setState(() {
         // Setting the generated ID
-        if (kDebugMode) {
-          print('Logging flowerId: $flowerId');
-        }
         _generatedId = flowerId;
       });
 
@@ -114,7 +118,6 @@ class _PickImageState extends State<PickImage> {
       });
     }
   }
-
 
   @override
   void dispose() {
