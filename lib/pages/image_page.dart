@@ -194,8 +194,8 @@ class _PickImageState extends State<PickImage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(13),
                   ),
-                  foregroundColor: Colors.white,
-                  backgroundColor: HexColor("#8b4b59"),
+                  foregroundColor: Colors.black,
+                  backgroundColor: HexColor("#ebe5f3"), // bde0fe 8b4b59 03045e 023e8a 3a86ff
                 ),
                 child: const Text("Take a Photo"),
               ),
@@ -214,8 +214,8 @@ class _PickImageState extends State<PickImage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(13),
                   ),
-                  foregroundColor: Colors.white,
-                  backgroundColor: HexColor("#8b4b59"),
+                  foregroundColor: Colors.black,
+                  backgroundColor: HexColor("#ebe5f3"),
                 ),
                 child: const Text("Choose from gallery"),
               ),
@@ -234,8 +234,8 @@ class _PickImageState extends State<PickImage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(13),
                   ),
-                  foregroundColor: Colors.white,
-                  backgroundColor: HexColor("#8b4b59"),
+                  foregroundColor: Colors.black,
+                  backgroundColor: HexColor("#ebe5f3"), // a881af 3a86ff ebe5f3
                 ),
                 child: const Text("Search Flower"),
               ),

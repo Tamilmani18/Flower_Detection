@@ -2,17 +2,39 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:flower_detection_app/connection/firebase_service.dart';
+import 'package:url_launcher/url_launcher.dart';
+// import 'package:share/share.dart';
+
 
 class FlowerDetails extends StatelessWidget {
   final File? imageFile;
   final String? generatedId;
   const FlowerDetails({super.key, this.imageFile, this.generatedId});
 
+  Future<void> _launchGoogleSearch(String query, {bool inApp = false}) async {
+    final encodedQuery = Uri.encodeQueryComponent(query);
+    final url = 'https://www.google.com/search?q=$encodedQuery';
+    if (await canLaunch(url)) {
+      if (inApp) {
+        await launch(url, forceWebView: true);
+      } else {
+        await launch(url);
+      }
+    } else {
+      print('Could not launch $url');
+    }
+  }
+
+  // Future<void> _shareFlower(String flowerName) async {
+  //   Share.share('Check out this beautiful flower: $flowerName');
+  // }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: HexColor("#8b4b59"),
+        backgroundColor: HexColor("#3a86ff"), //  8b4b59 3a86ff
         title: const Text(
           "Flower Details",
           style: TextStyle(
@@ -41,7 +63,7 @@ class FlowerDetails extends StatelessWidget {
                       String flowerName = flowerData['Name'] ?? 'Flower name not found';
                       String breed = flowerData['Breed'] ?? 'Breed not found';
                       String detail = flowerData['Detail'] ?? 'Detail not found';
-                      String scientificName = flowerData['ScientificName'] ?? 'Scientific Name not found';
+                      String scientificName = flowerData['ScientificName'] ?? 'Scientific Name not found'; // Species
 
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,22 +74,24 @@ class FlowerDetails extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Text(
-                              scientificName,
-                              style: TextStyle(
+                              flowerName,
+                              style: const TextStyle(
                                 fontSize: 30,
                                 fontFamily: 'ArchivoBlack',
-                                color: HexColor("#8b4b59"),
-                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                // color: HexColor("#ff8fa3"), // ef476f 5eb1bf
+                                // fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
                             child: Text(
-                              flowerName,
-                              style: TextStyle(
+                              scientificName,
+                              style: const TextStyle(
                                 fontSize: 20,
-                                color: HexColor("#ecd131"),
+                                color: Colors.black,
+                                // color: HexColor("#f4989c"), // maybe use another color
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -93,17 +117,46 @@ class FlowerDetails extends StatelessWidget {
                           const SizedBox(height: 25),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(
-                              'Breed: $breed',
-                              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            child: RichText(
+                              text: TextSpan(
+                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+                                children: [
+                                  const TextSpan(
+                                    text: 'Breed : ',
+                                    style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),
+                                  ),
+                                  TextSpan(
+                                    text: breed,
+                                    style: const TextStyle(color: Colors.black54), // f4989c
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
+                          // Padding(
+                          //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                          //   child: Text(
+                          //     'Breed: $breed',
+                          //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          //   ),
+                          // ),
                           const SizedBox(height: 10),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Text(
-                              'Details: $detail',
-                              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            child: RichText(
+                              text: TextSpan(
+                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+                                children: [
+                                  const TextSpan(
+                                    text: 'Details : ',
+                                    style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                                  ),
+                                  TextSpan(
+                                    text: detail,
+                                    style: const TextStyle(color: Colors.black54),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -112,17 +165,21 @@ class FlowerDetails extends StatelessWidget {
                           Center(
                             child: ElevatedButton(
                               onPressed: () {
-                                // Next page for more details
+                                if (flowerName != null && flowerName.isNotEmpty) {
+                                  _launchGoogleSearch(flowerName);
+                                }
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.yellow,
+                                // backgroundColor: Colors.yellow,
+                                backgroundColor: HexColor("#ebe5f3"),
                                 padding: const EdgeInsets.symmetric(horizontal: 27, vertical: 15),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'More Details',
                                 style: TextStyle(
                                   fontSize: 18,
-                                  color: HexColor("#8b4b59"),
+                                  // color: HexColor("#8b4b59"),
+                                  color: Colors.black54,
                                 ),
                               ),
                             ),
@@ -133,7 +190,9 @@ class FlowerDetails extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  onTap: (){},
+                                  onTap: (){
+                                    // _shareFlower(flowerName);
+                                  },
                                   child: Container(
                                     margin: const EdgeInsets.only(left: 20),
                                     decoration: BoxDecoration(

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flower_detection_app/pages/home_page.dart';
 
 void main() async{
-  // initialize firebase
+  // initializing firebase
   WidgetsFlutterBinding.ensureInitialized(); // ensures bindings for native platform
   if (kIsWeb) {
     // for web

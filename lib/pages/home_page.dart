@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: HexColor("#8b4b59"),
+        backgroundColor: HexColor("#3a86ff"), //  8b4b59 a2d2ff ffc8dd 3a86ff
         title: const Text(
           "Flower Detection",
           style: TextStyle(
