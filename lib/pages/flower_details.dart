@@ -1,10 +1,10 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:flower_detection_app/connection/firebase_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 // import 'package:share/share.dart';
-
 
 class FlowerDetails extends StatelessWidget {
   final File? imageFile;
@@ -14,14 +14,17 @@ class FlowerDetails extends StatelessWidget {
   Future<void> _launchGoogleSearch(String query, {bool inApp = false}) async {
     final encodedQuery = Uri.encodeQueryComponent(query);
     final url = 'https://www.google.com/search?q=$encodedQuery';
-    if (await canLaunch(url)) {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
       if (inApp) {
-        await launch(url, forceWebView: true);
+        await launchUrl(uri); // forceWebView: true
       } else {
-        await launch(url);
+        await launchUrl(uri);
       }
     } else {
-      print('Could not launch $url');
+      if (kDebugMode) {
+        print('Could not launch $url');
+      }
     }
   }
 
@@ -90,7 +93,7 @@ class FlowerDetails extends StatelessWidget {
                               scientificName,
                               style: const TextStyle(
                                 fontSize: 20,
-                                color: Colors.black,
+                                color: Colors.red, // black
                                 // color: HexColor("#f4989c"), // maybe use another color
                                 fontWeight: FontWeight.bold,
                               ),
@@ -165,7 +168,7 @@ class FlowerDetails extends StatelessWidget {
                           Center(
                             child: ElevatedButton(
                               onPressed: () {
-                                if (flowerName != null && flowerName.isNotEmpty) {
+                                if (flowerName.isNotEmpty) {
                                   _launchGoogleSearch(flowerName);
                                 }
                               },
@@ -228,7 +231,11 @@ class FlowerDetails extends StatelessWidget {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: (){},
+                                  onTap: (){
+                                    if (flowerName.isNotEmpty) {
+                                      _launchGoogleSearch(flowerName);
+                                    }
+                                  },
                                   child: Container(
                                     margin: const EdgeInsets.only(left: 20),
                                     decoration: BoxDecoration(
