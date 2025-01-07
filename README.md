@@ -1,8 +1,14 @@
 # Flower_detection_app
 
+Using this application you can able to find the details of the image by capturing its image by taking a picture of flower or just by uploading its image.
 
-[Home Page](https://github.com/Tamilmani18/Flower_Detection/blob/main/images/Home%20Page.jpg)
+# Screenshots
 
-![Home Page](https://github.com/user-attachments/assets/2b507757-ae7a-40f6-bd64-da752a4c1a74|height=10)
-![Selected Image](https://github.com/user-attachments/assets/9eaadce7-af90-4864-8996-ca8fe6be9729)
-![Flower Details Page](https://github.com/user-attachments/assets/db9c51a8-0ce3-4bd1-b173-afb8bc33f499)
+## Home Page
+<img width="215" height="430" alt="" src="https://github.com/Tamilmani18/Flower_Detection/blob/main/images/Home%20Page.jpg">
+
+## Selected Image Page 
+<img width="215" height="430" alt="" src="https://github.com/Tamilmani18/Flower_Detection/blob/main/images/Selected%20Flower.jpg">
+
+## Flower Details Page
+<img width="215" height="430" alt="" src="https://github.com/Tamilmani18/Flower_Detection/blob/main/images/Flower%20Details%20Page.jpg">
