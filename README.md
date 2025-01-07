@@ -1,16 +1,11 @@
-# flower_detection_app
+# Flower_detection_app
 
-A new Flutter project.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+![Screenshot_20250107_112052](https://github.com/user-attachments/assets/2b507757-ae7a-40f6-bd64-da752a4c1a74)
+![Screenshot_20250107_111946](https://github.com/user-attachments/assets/db9c51a8-0ce3-4bd1-b173-afb8bc33f499)
+![Screenshot_20250107_112036](https://github.com/user-attachments/assets/9eaadce7-af90-4864-8996-ca8fe6be9729)
